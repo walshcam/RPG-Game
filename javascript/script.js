@@ -32,10 +32,14 @@
 
 
 //     <!-- When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as this character for the rest of the game.-->
-
-
+$(document).ready(function() {
+console.log("At least its reading...")
 //     <!-- *************CHOOSING A HERO************* -->
-
+    $('#character1Picture','character2Picture','character3Picture','character4Picture').click(function(){
+        console.log("After click, before function")
+        $(this).parent().hide();
+        console.log("At least it registers the click...");
+    });
 
 
 //     <!-- 1) Have the pictures formatted in a way that allows you to know you're picking your character -->
@@ -115,3 +119,4 @@
 
 
 //     <!-- 3) Player loses when hero HP < 0 -->
+});

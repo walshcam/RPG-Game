@@ -1,7 +1,24 @@
+body {
+    background-color: lightslategray;
+}
+
 .container {
     height: 600px;
     width: 90%;
     margin: 2% 5%;
+    background-color: white;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 26px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
 }
 
 .row {
@@ -9,11 +26,11 @@
 }
 
 .rowStyle1 {
-    height: 8%;
+    height: 48px;
 }
 
 .rowStyle2 {
-    height: 38%;
+    height: 228px;
 }
 
 .col-4 {
@@ -55,21 +72,44 @@
     border: 10px solid green;
 }
 
-.remainingTextbox {
+.remainingTextbox-left {
     color: #ffffff;
     font-size: 20px;
     background-color: #000000;
-    position: relative;
     text-align: center;
-    width: 50px;
     padding: 5px 0px;
-    margin: 60%;
+}
+
+.remainingTextbox-right {
+    color: #ffffff;
+    font-size: 20px;
+    background-color: #000000;
+    text-align: center;
+    padding: 5px 3px;
 }
 
 .heroImage {
     border: 10px solid white;
 }
 
+.heroTextbox {
+    color: #ffffff;
+    font-size: 20px;
+    background-color: white;
+    position: relative;
+    text-align: center;
+    padding: 5px 0px;
+}
+
 .challengerImage {
     border: 10px solid white;
+}
+
+.challengerTextbox {
+    color: #ffffff;
+    font-size: 20px;
+    background-color: white;
+    position: relative;
+    text-align: center;
+    padding: 5px 0px;
 }
