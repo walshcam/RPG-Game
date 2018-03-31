@@ -194,6 +194,28 @@ function attack() {
 
 //Function when player loses
 
+function loss() {
+    $('#buttonAttack').html('RESET')
+    $('#comment').html("Hero has fainted! Please try again... this is a pay-by-click website.")
+    $('#buttonAttack').click(function(){
+        lossAfterReset();
+    });
+}
+
+function lossAfterReset () {
+    //****Comment */
+    $('#comment').html('The fate of this website... and your pride, depends on you! Choose your hero!');
+    //****CSS RESET */
+    $('.challengerImage').css('border', '10px solid white');
+    $('.challengerTextbox').css('background-color', 'white');
+    $('.heroImage').css('border', '10px solid white');
+    $('.heroTextbox').css('background-color', 'white');
+    $('.remainingCharacter').css('border','10px solid green');
+    $("#hero").attr('src','images/placeholder.jpg');
+    $("#challenger").attr('src','images/placeholder.jpg');
+    //*****UNHIDE CHARACTERS */
+    $('character1, character2, character3, character4').unhide();
+}
 
     $("#character1Picture").click(function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
@@ -210,6 +232,9 @@ function attack() {
                 chooseChallenger();
                 $('#buttonAttack').click(function(){
                     attack();
+                    if (heroHealthPoints <= 0) {
+                        loss();
+                    }
                 });
             });
         };
