@@ -28,17 +28,31 @@
         countAttackPower : 15
     };
 
-
+console.log("Is this reading?")
 
 
 //     <!-- When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as this character for the rest of the game.-->
 $(document).ready(function() {
 console.log("At least its reading...")
 //     <!-- *************CHOOSING A HERO************* -->
-    $('#character1Picture','character2Picture','character3Picture','character4Picture').click(function(){
-        console.log("After click, before function")
+$("#textbox1").html(sheep.healthPoints);
+$("#textbox2").html(neighborsDog.healthPoints);
+$("#textbox4").html(superEvilDragon.healthPoints);
+$("#textbox3").html(knight.healthPoints);
+
+function chooseHero(){
+    console.log("After click, before function");
+    $('.heroImage').css('border', '10px solid green');
+    $('.heroTextbox').css('background-color', 'black');
+    $('.remainingCharacter').css('border','10px solid red')
+    $('#comment').html('Choose your opponent!')
+}
+
+    $("#character2Picture").click(function(){
+        chooseHero();
         $(this).parent().hide();
-        console.log("At least it registers the click...");
+        $('#textboxHero').html(neighborsDog.healthPoints)
+        $("#hero").attr('src','images/dog.jpeg');
     });
 
 
