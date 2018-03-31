@@ -123,7 +123,7 @@ function attackComments(){
     //increases the attack power per attack
     //Has challenger attack hero
 
-function attack() {
+function turnAttack() {
     //*******SHEEP ATTACK */
     if($('#hero').attr('src').indexOf('sheep') != -1) {
         attackComments()
@@ -163,25 +163,6 @@ function attack() {
         }
     }
     //*******KNIGHT ATTACK */
-    if($('#hero').attr('src').indexOf('knight') != -1) {
-        attackComments()
-        challengerHealthPoints = challengerHealthPoints - heroAttackPoints;
-        $('#textboxChallenger').html(challengerHealthPoints);
-        heroAttackPoints = heroAttackPoints + knight.attackPoints;
-        if($('#challenger').attr('src').indexOf('sheep') != -1) {
-            heroHealthPoints = heroHealthPoints - sheep.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
-        }
-        if($('#challenger').attr('src').indexOf('Dragon') != -1) {
-            heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
-        }
-        if($('#challenger').attr('src').indexOf('dog') != -1) {
-            heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
-        }
-    }
-//*******KNIGHT ATTACK */
     if($('#hero').attr('src').indexOf('knight') != -1) {
         attackComments()
         challengerHealthPoints = challengerHealthPoints - heroAttackPoints;
@@ -286,71 +267,61 @@ function lossAfterReset () {
             $(this).parent().hide();
             $("#hero").attr('src','images/sheep.jpg');
             chooseHero();
+            console.log($('#challenger').attr('src').indexOf('placeholder'));
+        }
 
+            //*****CHOOSE CHALLENGER - DOG */
 
-            //**************SHEEP ---- DOG*************************************** */
+        if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            $('#character2Picture').click(function(){
+                console.log("Second Level Function");
+                $(this).parent().hide();
+                $("#challenger").attr('src','images/dog.jpeg');
+                chooseChallenger();
+            });
+        }
 
+            //*****CHOOSE CHALLENGER - KNIGHT */
 
-            if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
-                $('#character2Picture').click(function(){
-                    console.log("Second Level Function")
-                    $(this).parent().hide();
-                    $("#challenger").attr('src','images/dog.jpeg');
-                    chooseChallenger();
-                    $('#buttonAttack').click(function(){
-                        attack();
-                        if (heroHealthPoints <= 0) {
-                            loss();
-                        }
-                        if($('#row5').children(':visible').length === 0) {
-                            ultimateWin();
-                        }
-                        if (challengerHealthPoints <= 0){
-                            win();
-                        }
-
-
-                    //**************SHEEP ---
-
-                    });
-                });
-            }
-
-
-            //**************SHEEP ---- KNIGHT*************************************** */
-
-
+        if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             $('#character3Picture').click(function(){
-                console.log("Second Level Function")
+                console.log("Second Level Function");
                 $(this).parent().hide();
                 $("#challenger").attr('src','images/knight.JPG');
                 chooseChallenger();
-                $('#buttonAttack').click(function(){
-                    attack();
-                    if (heroHealthPoints <= 0) {
-                        loss();
-                    }
-                });
             });
+        }
 
+            //*****CHOOSE CHALLENGER - DRAGON */
 
-            //**************SHEEP ---- DRAGON*************************************** */
-
-
+        if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             $('#character4Picture').click(function(){
-                console.log("Second Level Function")
+                console.log("Second Level Function");
                 $(this).parent().hide();
                 $("#challenger").attr('src','images/superEvilDragon.jpg');
                 chooseChallenger();
-                $('#buttonAttack').click(function(){
-                    attack();
-                    if (heroHealthPoints <= 0) {
-                        loss();
-                    }
-                });
             });
-        };
+        }
+    });        
+
+            //******ATTACK */
+
+    $('#buttonAttack').click(function(){
+        console.log($('#challenger').attr('src').indexOf('placeholder'))
+        if ($('#challenger').attr('src').indexOf('placeholder') === -1) {
+            turnAttack();
+            if (heroHealthPoints <= 0) {
+                loss();
+            }
+            if($('#row5').children(':visible').length === 0) {
+                ultimateWin();
+            }
+            if (challengerHealthPoints <= 0){
+                win();
+            }
+        }
     });
+
 
 
 
@@ -358,44 +329,44 @@ function lossAfterReset () {
 
 
 
-    $("#character2Picture").click(function(){
-        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            console.log($('#hero').attr('scr'));
-            chooseHero();
-            $(this).parent().hide();
-            $("#hero").attr('src','images/dog.jpeg');
-        };
-    });
+    // $("#character2Picture").click(function(){
+    //     if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+    //         console.log($('#hero').attr('scr'));
+    //         chooseHero();
+    //         $(this).parent().hide();
+    //         $("#hero").attr('src','images/dog.jpeg');
+    //     };
+    // });
 
 
 
-    //***************************KNIGHT************************************************ */
+    // //***************************KNIGHT************************************************ */
 
 
 
-    $("#character3Picture").click(function(){
-        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            console.log($('#hero').attr('scr'));
-            chooseHero();
-            $(this).parent().hide();
-            $("#hero").attr('src','images/knight.JPG');
-        };
-    });
+    // $("#character3Picture").click(function(){
+    //     if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+    //         console.log($('#hero').attr('scr'));
+    //         chooseHero();
+    //         $(this).parent().hide();
+    //         $("#hero").attr('src','images/knight.JPG');
+    //     };
+    // });
 
 
 
-    //***************************DRAGON************************************************ */
+    // //***************************DRAGON************************************************ */
 
 
 
-    $("#character4Picture").click(function(){
-        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            console.log($('#hero').attr('scr'));
-            chooseHero();
-            $(this).parent().hide();
-            $("#hero").attr('src','images/superEvilDragon.jpg');
-        };
-    });   
+    // $("#character4Picture").click(function(){
+    //     if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+    //         console.log($('#hero').attr('scr'));
+    //         chooseHero();
+    //         $(this).parent().hide();
+    //         $("#hero").attr('src','images/superEvilDragon.jpg');
+    //     };
+    // });   
 
 
 //     <!-- 1) Have the pictures formatted in a way that allows you to know you're picking your character -->
