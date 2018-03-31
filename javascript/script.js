@@ -221,7 +221,23 @@ function attack() {
     }
 }
 
-//Function when player wins
+//Function when player wins match
+
+function win() {
+    $("#challenger").attr('src','images/placeholder.jpg'); 
+    $('#comment').html("Choose your next challenger")
+    attackButton();
+}
+
+//Function when player wins game
+
+function ultimateWin() {
+    $('#buttonAttack').html('RESET')
+    $('#comment').html("You are the champion! There's no time for losers because you are the champion.... of the world!!!")
+    $('#buttonAttack').click(function(){
+        lossAfterReset();
+    });
+}
 
 //Function when player loses
 
@@ -256,26 +272,54 @@ function lossAfterReset () {
 }
 
 
-//*******************GAME ALGORITHM******************* */
+//********************************GAME ALGORITHM************************************* */
     attackButton();
+
+
+
+    //***************************SHEEP************************************************ */
+
+
 
     $("#character1Picture").click(function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
             $(this).parent().hide();
             $("#hero").attr('src','images/sheep.jpg');
             chooseHero();
-            $('#character2Picture').click(function(){
-                console.log("Second Level Function")
-                $(this).parent().hide();
-                $("#challenger").attr('src','images/dog.jpeg');
-                chooseChallenger();
-                $('#buttonAttack').click(function(){
-                    attack();
-                    if (heroHealthPoints <= 0) {
-                        loss();
-                    }
+
+
+            //**************SHEEP ---- DOG*************************************** */
+
+
+            if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+                $('#character2Picture').click(function(){
+                    console.log("Second Level Function")
+                    $(this).parent().hide();
+                    $("#challenger").attr('src','images/dog.jpeg');
+                    chooseChallenger();
+                    $('#buttonAttack').click(function(){
+                        attack();
+                        if (heroHealthPoints <= 0) {
+                            loss();
+                        }
+                        if($('#row5').children(':visible').length === 0) {
+                            ultimateWin();
+                        }
+                        if (challengerHealthPoints <= 0){
+                            win();
+                        }
+
+
+                    //**************SHEEP ---
+
+                    });
                 });
-            });
+            }
+
+
+            //**************SHEEP ---- KNIGHT*************************************** */
+
+
             $('#character3Picture').click(function(){
                 console.log("Second Level Function")
                 $(this).parent().hide();
@@ -288,8 +332,31 @@ function lossAfterReset () {
                     }
                 });
             });
+
+
+            //**************SHEEP ---- DRAGON*************************************** */
+
+
+            $('#character4Picture').click(function(){
+                console.log("Second Level Function")
+                $(this).parent().hide();
+                $("#challenger").attr('src','images/superEvilDragon.jpg');
+                chooseChallenger();
+                $('#buttonAttack').click(function(){
+                    attack();
+                    if (heroHealthPoints <= 0) {
+                        loss();
+                    }
+                });
+            });
         };
     });
+
+
+
+    //***************************DOG************************************************ */
+
+
 
     $("#character2Picture").click(function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
@@ -300,6 +367,12 @@ function lossAfterReset () {
         };
     });
 
+
+
+    //***************************KNIGHT************************************************ */
+
+
+
     $("#character3Picture").click(function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
             console.log($('#hero').attr('scr'));
@@ -308,6 +381,12 @@ function lossAfterReset () {
             $("#hero").attr('src','images/knight.JPG');
         };
     });
+
+
+
+    //***************************DRAGON************************************************ */
+
+
 
     $("#character4Picture").click(function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
