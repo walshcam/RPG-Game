@@ -70,6 +70,7 @@ h2 {
 
 .remainingCharacter {
     border: 10px solid green;
+    cursor: pointer;
 }
 
 .remainingTextbox-left {
