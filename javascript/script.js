@@ -82,9 +82,7 @@ function chooseHero(){
     $('.heroTextbox').css('background-color', 'black');
     $('.remainingCharacter').css('border','10px solid red');
     $('#comment').html('Choose your opponent!');
-    heroImage = false;
-    playerCount = 1;
-    $('#buttonAttack').click(function(){
+    $('#buttonAttack').on('click', function(){
         $('#comment').html("The wind is a worthy opponent, but now it is time to fight something a little more solid. Choose your challenger!");
     });
 
@@ -153,15 +151,12 @@ function turnAttack() {
         heroAttackPoints = heroAttackPoints + sheep.attackPoints;
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         $('#textboxHero').html(heroHealthPoints);
     }
@@ -173,15 +168,12 @@ function turnAttack() {
         heroAttackPoints = heroAttackPoints + neighborsDog.attackPoints;
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         $('#textboxHero').html(heroHealthPoints);
     }
@@ -193,16 +185,14 @@ function turnAttack() {
         heroAttackPoints = heroAttackPoints + knight.attackPoints;
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - sheep.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
+        $('#textboxHero').html(heroHealthPoints);
     }
     //*******SUPER EVIL DRAGON ATTACK */
     if($('#hero').attr('src').indexOf('Dragon') != -1) {
@@ -212,16 +202,14 @@ function turnAttack() {
         heroAttackPoints = heroAttackPoints + knight.attackPoints;
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - sheep.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
-            $('#textboxHero').html(heroHealthPoints);
         }
+        $('#textboxHero').html(heroHealthPoints);
     }
 }
 
@@ -248,7 +236,7 @@ function ultimateWin() {
 function loss() {
     $('#buttonAttack').html('RESET');
     $('#comment').html("Hero has fainted! Please try again... this is a pay-by-click website.");
-    $('#buttonAttack').click(function(){
+    $('#buttonAttack').on('click',function(){
         lossAfterReset();
     });
 };
@@ -283,7 +271,7 @@ function lossAfterReset () {
 
 
 
-    //***************************SHEEP************************************************ */
+    //***************************CHOOSE SHEEP************************************************ */
 
 
 
@@ -293,6 +281,7 @@ function lossAfterReset () {
             $("#hero").attr('src','images/sheep.jpg');
             chooseHero();
             heroHealthPoints = sheep.healthPoints;
+            heroAttackPoints = sheep.attackPoints;
             console.log('Clicked on Hero Image');
             console.log('challengerImage is' + challengerImage)
         }
@@ -312,11 +301,12 @@ function lossAfterReset () {
 
     $("#character2Picture").on('click', function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+            console.log('Clicked on Hero Image');
             $(this).parent().hide();
             $("#hero").attr('src','images/dog.jpeg');
             chooseHero();
             heroHealthPoints = neighborsDog.healthPoints;
-            console.log('Clicked on Hero Image');
+            heroAttackPoints = neighborsDog.attackPoints;
             console.log('challengerImage is' + challengerImage)
         }
         
@@ -336,6 +326,7 @@ function lossAfterReset () {
             $("#hero").attr('src','images/knight.JPG');
             chooseHero();
             heroHealthPoints = knight.healthPoints;
+            heroAttackPoints = knight.attackPoints;
             console.log('Clicked on Hero Image');
             console.log('challengerImage is' + challengerImage)
         }
@@ -356,6 +347,7 @@ function lossAfterReset () {
             $("#hero").attr('src','images/superEvilDragon.jpg');
             chooseHero();
             heroHealthPoints = superEvilDragon.healthPoints;
+            heroAttackPoints = superEvilDragon.attackPoints;
             console.log('Clicked on Hero Image');
             console.log('challengerImage is' + challengerImage)
         }
@@ -370,19 +362,22 @@ function lossAfterReset () {
             //******ATTACK */
 
     $('#buttonAttack').on('click', function(){
-        if (challengerImage === false) {
+        if (($('#hero').attr('src').indexOf('placeholder') === -1) && ($('#challenger').attr('src').indexOf('placeholder') === -1)) {
             console.log(playerCount);
             console.log("TurnAttack Activated");
             turnAttack();
             if (heroHealthPoints <= 0) {
+                console.log('loss')
                 loss();
-            };
-            if(playerCount === 4) {
+            }
+            else if($('#row5').children(':visible').length === 0) {
+                console.log('ultimateWin')
                 ultimateWin();
-            };
-            if (challengerHealthPoints <= 0){
+            }
+            else if (challengerHealthPoints <= 0){
+                console.log('win')
                 win();
-            };
+            }
         }
         else {
             console.log('Attack button is false')
