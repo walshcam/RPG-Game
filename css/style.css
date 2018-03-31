@@ -1,0 +1,64 @@
+.container {
+    height: 600px;
+    width: 90%;
+    margin: 2% 5%;
+}
+
+.row {
+    width: 100%;
+}
+
+.rowStyle1 {
+    height: 8%;
+}
+
+.rowStyle2 {
+    height: 38%;
+}
+
+.col-4 {
+    width: 33%;
+    float: left;
+}
+
+.col-3 {
+    width: 25%;
+    float: left;
+}
+
+.col {
+    margin: auto;
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+    float: left;
+}
+
+.align-right {
+    text-align: right;
+    float: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.remainingCharacter {
+    border: 10px solid green;
+}
+
+.heroImage {
+    border: 10px solid white;
+}
+
+.challengerImage {
+    border: 10px solid white;
+}
