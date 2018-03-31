@@ -91,18 +91,18 @@ function chooseHero(){
     // Hero Health Points Input
     if($('#hero').attr('src').indexOf('sheep') != -1) {
         heroHealthPoints = sheep.healthPoints;
-    };
-    if($('#hero').attr('src').indexOf('dog') != -1) {
+    }
+    else if($('#hero').attr('src').indexOf('dog') != -1) {
         heroHealthPoints = neighborsDog.healthPoints;
-    };
-    if($('#hero').attr('src').indexOf('knight') != -1) {
+    }
+    else if($('#hero').attr('src').indexOf('knight') != -1) {
         heroHealthPoints = knight.healthPoints;
-    };
-    if($('#hero').attr('src').indexOf('Dragon') != -1) {
+    }
+    else if($('#hero').attr('src').indexOf('Dragon') != -1) {
         heroHealthPoints = superEvilDragon.healthPoints;
-    };
+    }
     $('#textboxHero').html(heroHealthPoints);    
-};
+}
 
 //Function used when a challenger is chosen.
 
@@ -115,15 +115,30 @@ function chooseChallenger(){
     challengerImage = false;
     playerCount++;
     console.log(playerCount)
+
+    // Hero Health Points Input
+    if($('#challenger').attr('src').indexOf('sheep') != -1) {
+        challengerHealthPoints = sheep.healthPoints;
+    }
+    else if($('#challenger').attr('src').indexOf('dog') != -1) {
+        challengerHealthPoints = neighborsDog.healthPoints;
+    }
+    else if($('#challenger').attr('src').indexOf('knight') != -1) {
+        challengerHealthPoints = knight.healthPoints;
+    }
+    else if($('#challenger').attr('src').indexOf('Dragon') != -1) {
+        challengerHealthPoints = superEvilDragon.healthPoints;
+    }
+
     $('#textboxChallenger').html(challengerHealthPoints);
-};
+}
 
 //Function that randomizes the attack comments
 function attackComments(){
     var attackCommentArray = ["You got this! Attack again!","You get a flesh wound! And you get a flesh wound!","Direct hit!","Kill him all the way to death! Attack again!","That was his favorite foot!"];
     var attackComment = Math.floor(Math.random() * attackCommentArray.length);
     $('#comment').html(attackCommentArray[attackComment]);
-};
+}
 
 //Function that 
     //increases the attack power per attack
@@ -139,16 +154,17 @@ function turnAttack() {
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
-    };
+        }
+        $('#textboxHero').html(heroHealthPoints);
+    }
     //*******DOG ATTACK */
     if($('#hero').attr('src').indexOf('dog') != -1) {
         attackComments()
@@ -158,16 +174,17 @@ function turnAttack() {
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
-    };
+        }
+        $('#textboxHero').html(heroHealthPoints);
+    }
     //*******KNIGHT ATTACK */
     if($('#hero').attr('src').indexOf('knight') != -1) {
         attackComments()
@@ -177,16 +194,16 @@ function turnAttack() {
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - sheep.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('Dragon') != -1) {
             heroHealthPoints = heroHealthPoints - superEvilDragon.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
-    };
+        }
+    }
     //*******SUPER EVIL DRAGON ATTACK */
     if($('#hero').attr('src').indexOf('Dragon') != -1) {
         attackComments()
@@ -196,17 +213,17 @@ function turnAttack() {
         if($('#challenger').attr('src').indexOf('sheep') != -1) {
             heroHealthPoints = heroHealthPoints - sheep.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('knight') != -1) {
             heroHealthPoints = heroHealthPoints - knight.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
+        }
         if($('#challenger').attr('src').indexOf('dog') != -1) {
             heroHealthPoints = heroHealthPoints - neighborsDog.countAttackPower;
             $('#textboxHero').html(heroHealthPoints);
-        };
-    };
-};
+        }
+    }
+}
 
 //Function when player wins match
 
@@ -270,56 +287,89 @@ function lossAfterReset () {
 
 
 
-    $("#character1Picture").click(function(){
-        if (heroImage) {
+    $("#character1Picture").on('click', function(){
+        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
             $(this).parent().hide();
             $("#hero").attr('src','images/sheep.jpg');
             chooseHero();
             heroHealthPoints = sheep.healthPoints;
-            console.log('Clicked on Hero Image')
-        };
+            console.log('Clicked on Hero Image');
+            console.log('challengerImage is' + challengerImage)
+        }
 
-            //*****CHOOSE CHALLENGER - DOG */
+        else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            console.log("Second Level Function");
+            $(this).parent().hide();
+            $("#challenger").attr('src','images/sheep.jpg');
+            chooseChallenger();
+            challengerHealthPoints = sheep.healthPoints;
+        }
+    });
 
-        if (challengerImage) {
-            console.log("Get That Dog" + $('#challenger').attr('src').indexOf('placeholder'));
-            $('#character2Picture').click(function(){
-                console.log("Second Level Function");
-                $(this).parent().hide();
-                $("#challenger").attr('src','images/dog.jpeg');
-                chooseChallenger();
-                challengerHealthPoints = neighborsDog.healthPoints;
-            });
-        };
 
-            //*****CHOOSE CHALLENGER - KNIGHT */
+            //*****************CHOOSE DOG **********************/
 
-        if (challengerImage) {
-            $('#character3Picture').click(function(){
-                console.log("Second Level Function");
-                $(this).parent().hide();
-                $("#challenger").attr('src','images/knight.JPG');
-                chooseChallenger();
-                challengerHealthPoints = knight.healthPoints;
-            });
-        };
 
-            //*****CHOOSE CHALLENGER - DRAGON */
+    $("#character2Picture").on('click', function(){
+        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+            $(this).parent().hide();
+            $("#hero").attr('src','images/dog.jpeg');
+            chooseHero();
+            heroHealthPoints = neighborsDog.healthPoints;
+            console.log('Clicked on Hero Image');
+            console.log('challengerImage is' + challengerImage)
+        }
+        
+        else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            console.log("Second Level Function");
+            $(this).parent().hide();
+            $("#challenger").attr('src','images/dog.jpeg');
+            chooseChallenger();
+        }
+    });
 
-        if (challengerImage) {
-            $('#character4Picture').click(function(){
-                console.log("Second Level Function");
-                $(this).parent().hide();
-                $("#challenger").attr('src','images/superEvilDragon.jpg');
-                chooseChallenger();
-                challengerHealthPoints = superEvilDragon.healthPoints;
-            });
-        };
-    });        
+            //******************CHOOSE KNIGHT */
 
+    $("#character3Picture").on('click', function(){
+        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+            $(this).parent().hide();
+            $("#hero").attr('src','images/knight.JPG');
+            chooseHero();
+            heroHealthPoints = knight.healthPoints;
+            console.log('Clicked on Hero Image');
+            console.log('challengerImage is' + challengerImage)
+        }
+                
+        else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            console.log("Second Level Function");
+            $(this).parent().hide();
+            $("#challenger").attr('src','images/knight.JPG');
+            chooseChallenger();
+        }
+    });
+
+            //*********************CHOOSE DRAGON */
+
+    $("#character4Picture").on('click', function(){
+        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+            $(this).parent().hide();
+            $("#hero").attr('src','images/superEvilDragon.jpg');
+            chooseHero();
+            heroHealthPoints = superEvilDragon.healthPoints;
+            console.log('Clicked on Hero Image');
+            console.log('challengerImage is' + challengerImage)
+        }
+                        
+        else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            console.log("Second Level Function");
+            $(this).parent().hide();
+            $("#challenger").attr('src','images/superEvilDragon.jpg');
+            chooseChallenger();
+        }
+    });
             //******ATTACK */
 
-    $('#buttonAttack').click(function(){
+    $('#buttonAttack').on('click', function(){
         if (challengerImage === false) {
             console.log(playerCount);
             console.log("TurnAttack Activated");
@@ -327,13 +377,16 @@ function lossAfterReset () {
             if (heroHealthPoints <= 0) {
                 loss();
             };
-            if(playerCount ===4) {
+            if(playerCount === 4) {
                 ultimateWin();
             };
             if (challengerHealthPoints <= 0){
                 win();
             };
-        };
+        }
+        else {
+            console.log('Attack button is false')
+        }
     });
 
 
