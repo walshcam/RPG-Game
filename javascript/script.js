@@ -2,6 +2,7 @@
 var challengerHealthPoints = 0;
 var heroHealthPoints = 0;
 var heroAttackPoints = 0;
+var reset = false;
 
 
 //     <!-- The health points, attack power and counter attack power of each character must differ. Each character has these three attributes -->
@@ -9,22 +10,22 @@ var heroAttackPoints = 0;
 
 //      <!-- *********CREATE AN OBJECT FOR EACH CHARACTER********* -->
     var sheep = {
-        healthPoints : 20,
-        attackPoints : 10,
+        healthPoints : 35,
+        attackPoints : 25,
         originalAttackPoints : 10,
         countAttackPower : 2
     };
 
     var superEvilDragon = {
         healthPoints : 199,
-        attackPoints : 10,
+        attackPoints : 5,
         originalAttackPoints : 10,
         countAttackPower : 20
     };
 
     var neighborsDog = {
         healthPoints : 100,
-        attackPoints : 2,
+        attackPoints : 17,
         originalAttackPoints : 2,
         countAttackPower : 5
     };
@@ -52,14 +53,6 @@ $("#textbox4").html(superEvilDragon.healthPoints);
 $("#textbox3").html(knight.healthPoints);
 
 //     <!-- *************CHOOSING A HERO************* -->
-
-//Response if attack button is clicked
-
-function attackButton() {
-$('#buttonAttack').on('click', function(){
-    $('#comment').html("There's nobody to fight with yet silly goose. Choose your hero first.")
-});
-};
 
 //Function used when a hero is chosen.
 
@@ -203,9 +196,9 @@ function turnAttack() {
 //Function when player wins match
 
 function win() {
-    $("#challenger").attr('src','images/placeholder.jpg'); 
+    $("#challenger").attr('src','images/placeholder.jpg');
+    $('.challengerImage').css('border', '10px solid white'); 
     $('#comment').html("Choose your next challenger");
-    //attackButton();
 }
 
 //Function when player wins game
@@ -213,50 +206,20 @@ function win() {
 function ultimateWin() {
     $('#buttonAttack').html('RESET');
     $('#comment').html("You are the champion! There's no time for losers because you are the champion.... of the world!!!");
-    $('#buttonAttack').click(function(){
-        lossAfterReset();
-    });
+    reset = true;
 };
 
 //Function when player loses
 
 function loss() {
+    
     $('#buttonAttack').html('RESET');
     $('#comment').html("Hero has fainted! Please try again... this is a pay-by-click website.");
-    // $('#buttonAttack').on('click',function(){
-    //     lossAfterReset();
-    // });
-};
-
-function lossAfterReset () {
-    if ($('#buttonAttack').html() === 'RESET') {
-        $('#buttonAttack').on('click', function(){
-            console.log('lossAfterReset Activated');
-            //****Attack Button */
-            $('#buttonAttack').html('ATTACK');
-            //attackButton();
-            //*****Comment */
-            $('#comment').html('The fate of this website... and your pride, depends on you! Choose your hero!');
-            //****CSS RESET */
-            $('.challengerImage').css('border', '10px solid white');
-            $('.challengerTextbox').css('background-color', 'white');
-            $('.heroImage').css('border', '10px solid white');
-            $('.heroTextbox').css('background-color', 'white');
-            $('.remainingCharacter').css('border','10px solid green');
-            $("#hero").attr('src','images/placeholder.jpg');
-            $("#challenger").attr('src','images/placeholder.jpg');
-            //****Zero Values */
-            challengerHealthPoints = 0;
-            heroHealthPoints = 0;
-            heroAttackPoints = 0;
-            //*****UNHIDE CHARACTERS */
-            $('#character1, #character2, #character3, #character4').show();
-        }); 
-    };
+    reset = true;
+}
 
 
 //********************************GAME ALGORITHM************************************* */
-attackButton()
 
 
     //***************************CHOOSE SHEEP************************************************ */
@@ -346,7 +309,35 @@ attackButton()
             //******ATTACK */
 
     $('#buttonAttack').on('click', function(){
-        if (($('#hero').attr('src').indexOf('placeholder') === -1) && ($('#challenger').attr('src').indexOf('placeholder') === -1)) {
+        if ($('#hero').attr('src').indexOf('placeholder') != -1) {
+            $('#comment').html("There's nobody to fight with yet silly goose. Choose your hero first.")
+        }
+        else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
+            $('#comment').html("The wind is a worthy advesary, but it is now the time to pick an opponent.")
+        }
+        else if (reset) {
+            console.log('lossAfterReset Activated');
+            //****Attack Button */
+            $('#buttonAttack').html('ATTACK');
+            //*****Comment */
+            $('#comment').html('The fate of this website... and your pride, depends on you! Choose your hero!');
+            //****CSS RESET */
+            $('.challengerImage').css('border', '10px solid white');
+            $('.challengerTextbox').css('background-color', 'white');
+            $('.heroImage').css('border', '10px solid white');
+            $('.heroTextbox').css('background-color', 'white');
+            $('.remainingCharacter').css('border','10px solid green');
+            $("#hero").attr('src','images/placeholder.jpg');
+            $("#challenger").attr('src','images/placeholder.jpg');
+            //****Zero Values */
+            challengerHealthPoints = 0;
+            heroHealthPoints = 0;
+            heroAttackPoints = 0;
+            reset = false;
+            //*****UNHIDE CHARACTERS */
+            $('#character1, #character2, #character3, #character4').show();
+        }
+        else if (($('#hero').attr('src').indexOf('placeholder') === -1) && ($('#challenger').attr('src').indexOf('placeholder') === -1)) {
             console.log("TurnAttack Activated");
             turnAttack();
             console.log("After turnAttack")
@@ -354,7 +345,7 @@ attackButton()
                 console.log('loss')
                 loss();
             }
-            else if($('#row5').children(':visible').length === 0) {
+            else if(($('#row5').children(':visible').length === 0)&&(challengerHealthPoints <=0)) {
                 console.log('ultimateWin')
                 ultimateWin();
             }
@@ -368,8 +359,6 @@ attackButton()
         }
         console.log("Attack comment line 366: " + $('#comment').html());
     });
-    
-    lossAfterReset();
     console.log("End of Code comment line 368: " + $('#comment').html());
 
 
