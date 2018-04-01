@@ -4,8 +4,8 @@ body {
 
 .container {
     height: 600px;
-    width: 90%;
-    margin: 2% 5%;
+    width: 900px;
+    margin: 2% auto;
     background-color: white;
     border: 5px solid white;
     border-radius: 1rem;
@@ -31,6 +31,7 @@ h2 {
     border: 5px solid rgba(119, 136, 153, 0.51);
     border-radius: 1rem;
     background-color: rgb(155, 186, 218);
+    cursor: pointer;
 }
 
 #buttonAttack:hover {
@@ -63,6 +64,21 @@ h2 {
 .col-4 {
     width: 33%;
     float: left;
+}
+
+.col-4-mini {
+    width: 33%;
+    float: left;
+}
+
+.col-4-large {
+    width: 33%;
+    float: left;
+}
+
+.col-4-right {
+    width: 33%;
+    float: right;
 }
 
 .col-3 {
@@ -104,7 +120,16 @@ h2 {
 .imageContainer {
     width: 220px;
     height: 220px;
-    position: relative
+    position: relative;
+
+}
+
+.imageContainer-right {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    text-align: right;
+    float: right;
 }
 
 .remainingTextbox {
@@ -161,4 +186,55 @@ h2 {
     border-bottom: 2px solid white;
     border-right: 2px solid white;
     bottom: 5%;
+}
+
+@media screen and (max-width: 1000px){
+
+    .container {
+        height: 850px;
+        width: 90%;
+        margin: 2% 5%;
+    }
+
+    .col-3 {
+        width: 50%;
+    }
+
+    .col-4-right {
+        float: left;
+    }
+
+    .align-left {
+        text-align: center;
+    }
+
+    .align-right {
+        text-align: center;
+    }
+    
+    .imageContainer {
+        margin: auto;
+    }
+
+    .imageContainer-right {
+        margin: auto;
+        margin-top: 2%;
+        text-align: center;
+        float: none;
+    }
+}
+
+@media screen and (max-width: 750px){
+
+    .col-4-mini {
+        width: 20%;
+    }
+
+    .col-4 {
+        width: 40%;
+    }
+
+    .col-4-right {
+        float: right;
+    }
 }
