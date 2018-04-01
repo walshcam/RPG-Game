@@ -60,6 +60,9 @@ function chooseHero(){
     console.log("The hero is chosen...");
     $('.heroImage').css('border', '10px solid green');
     $('.heroTextbox').css('background-color', 'black');
+    $('.heroTextbox').css('border-top', '2px solid grey');
+    $('.heroTextbox').css('border-bottom', '2px solid grey');
+    $('.heroTextbox').css('border-right', '2px solid grey');
     $('.remainingCharacter').css('border','10px solid red');
     $('#comment').html('Choose your opponent!');
     // $('#buttonAttack').on('click', function(){
@@ -88,7 +91,10 @@ function chooseChallenger(){
     console.log("The challenger is chosen...");
     $('.challengerImage').css('border', '10px solid black');
     $('.challengerTextbox').css('background-color', 'black');
-    $('.remainingCharacter').css('border','10px solid white')
+    $('.challengerTextbox').css('border-top', '2px solid grey');
+    $('.challengerTextbox').css('border-bottom', '2px solid grey');
+    $('.challengerTextbox').css('border-right', '2px solid grey');
+    $('.remainingCharacter').css('border','10px solid rgb(155, 186, 218)')
     $('#comment').html('Now it is time to fight... TO THE DEATH! (No really, fight to the death.)')
 
     // Hero Health Points Input
@@ -228,7 +234,7 @@ function loss() {
 
     $("#character1Picture").on('click', function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#hero").attr('src','images/sheep.jpg');
             chooseHero();
             heroHealthPoints = sheep.healthPoints;
@@ -238,7 +244,7 @@ function loss() {
 
         else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             console.log("Second Level Function");
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#challenger").attr('src','images/sheep.jpg');
             chooseChallenger();
             challengerHealthPoints = sheep.healthPoints;
@@ -252,7 +258,7 @@ function loss() {
     $("#character2Picture").on('click', function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
             console.log('Clicked on Hero Image');
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#hero").attr('src','images/dog.jpeg');
             chooseHero();
             heroHealthPoints = neighborsDog.healthPoints;
@@ -261,7 +267,7 @@ function loss() {
         
         else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             console.log("Second Level Function");
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#challenger").attr('src','images/dog.jpeg');
             chooseChallenger();
         }
@@ -271,7 +277,7 @@ function loss() {
 
     $("#character3Picture").on('click', function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#hero").attr('src','images/knight.JPG');
             chooseHero();
             heroHealthPoints = knight.healthPoints;
@@ -281,7 +287,7 @@ function loss() {
                 
         else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             console.log("Second Level Function");
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#challenger").attr('src','images/knight.JPG');
             chooseChallenger();
         }
@@ -291,7 +297,7 @@ function loss() {
 
     $("#character4Picture").on('click', function(){
         if ($('#hero').attr('src').indexOf('placeholder') != -1) {
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#hero").attr('src','images/superEvilDragon.jpg');
             chooseHero();
             heroHealthPoints = superEvilDragon.healthPoints;
@@ -301,7 +307,7 @@ function loss() {
                         
         else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
             console.log("Second Level Function");
-            $(this).parent().hide();
+            $(this).parent().parent().hide();
             $("#challenger").attr('src','images/superEvilDragon.jpg');
             chooseChallenger();
         }
@@ -313,7 +319,7 @@ function loss() {
             $('#comment').html("There's nobody to fight with yet silly goose. Choose your hero first.")
         }
         else if ($('#challenger').attr('src').indexOf('placeholder') != -1) {
-            $('#comment').html("The wind is a worthy advesary, but it is now the time to pick an opponent.")
+            $('#comment').html("The wind is a worthy adversary, but it is now the time to pick an opponent")
         }
         else if (reset) {
             console.log('lossAfterReset Activated');
@@ -324,8 +330,14 @@ function loss() {
             //****CSS RESET */
             $('.challengerImage').css('border', '10px solid white');
             $('.challengerTextbox').css('background-color', 'white');
+            $('.challengerTextbox').css('border-top', '2px solid white');
+            $('.challengerTextbox').css('border-bottom', '2px solid white');
+            $('.challengerTextbox').css('border-right', '2px solid white');
             $('.heroImage').css('border', '10px solid white');
             $('.heroTextbox').css('background-color', 'white');
+            $('.heroTextbox').css('border-top', '2px solid white');
+            $('.heroTextbox').css('border-bottom', '2px solid white');
+            $('.heroTextbox').css('border-right', '2px solid white');
             $('.remainingCharacter').css('border','10px solid green');
             $("#hero").attr('src','images/placeholder.jpg');
             $("#challenger").attr('src','images/placeholder.jpg');

@@ -1,5 +1,5 @@
 body {
-    background-color: lightslategray;
+    background-color: rgb(155, 186, 218);
 }
 
 .container {
@@ -7,6 +7,9 @@ body {
     width: 90%;
     margin: 2% 5%;
     background-color: white;
+    border: 5px solid white;
+    border-radius: 1rem;
+
 }
 
 h1 {
@@ -19,6 +22,30 @@ h2 {
     font-size: 26px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 900;
+}
+
+#buttonAttack {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    border: 5px solid rgba(119, 136, 153, 0.51);
+    border-radius: 1rem;
+    background-color: rgb(155, 186, 218);
+}
+
+#buttonAttack:hover {
+    background-color: rgb(134, 150, 194);
+}
+
+#buttonAttack:active {
+    background-color: rgb(155, 180, 211);
+    border: 3px solid rgba(119, 136, 153, 0.51);
+}
+
+#comment {
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
 }
 
 .row {
@@ -71,39 +98,51 @@ h2 {
 .remainingCharacter {
     border: 10px solid green;
     cursor: pointer;
+    border-radius: 1rem;
 }
 
-.remainingTextbox-left {
+.imageContainer {
+    width: 220px;
+    height: 220px;
+    position: relative
+}
+
+.remainingTextbox {
     color: #ffffff;
     font-size: 20px;
     background-color: #000000;
     text-align: center;
     padding: 5px 0px;
-}
-
-.remainingTextbox-right {
-    color: #ffffff;
-    font-size: 20px;
-    background-color: #000000;
-    text-align: center;
-    padding: 5px 3px;
+    width: 200px;
+    position: absolute;
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+    border-right: 2px solid grey;
+    bottom: 5%;
 }
 
 .heroImage {
     border: 10px solid white;
+    border-radius: 1rem;
 }
 
 .challengerImage {
     border: 10px solid white;
+    border-radius: 1rem;
 }
 
 .heroTextbox {
     color: #ffffff;
     font-size: 20px;
     background-color: white;
-    position: relative;
+    position: absolute;
     text-align: center;
     padding: 5px 0px;
+    width: 200px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    bottom: 5%;
 }
 
 .placeholderImage {
@@ -114,7 +153,12 @@ h2 {
     color: #ffffff;
     font-size: 20px;
     background-color: white;
-    position: relative;
+    position: absolute;
     text-align: center;
     padding: 5px 0px;
+    width: 200px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    bottom: 5%;
 }
