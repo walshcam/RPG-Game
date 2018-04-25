@@ -1,12 +1,12 @@
-#THE RPG GAME
+# THE RPG GAME
 
-##[PLAY HERE!](https://walshcam.github.io/RPG-Game/)
+## [PLAY HERE!](https://walshcam.github.io/RPG-Game/)
 
-***What is it?***
+#### ***What is it?***
 
 This is a simple RPG that allows you to choose your hero and face off against all remaining opponents. Will you be able to survive?
 
-***How to play***
+#### ***How to play***
 
 1. Select your character.
 
@@ -22,7 +22,7 @@ This is a simple RPG that allows you to choose your hero and face off against al
 
 **You win when you are the final character remaining.
 
-GIFs
+#### ***GIFs***
 
 Animated GIFs to see the game in action:
 
@@ -32,7 +32,7 @@ Example of the game on a smaller screen:
 
 ![Smaller Screen GIF](./gifs/smallerRPG.gif)
 
-***Technologies Applied***
+#### ***Technologies Applied***
 
 * CSS - No Framework
 * JavaScript
