@@ -214,6 +214,7 @@ h2 {
     
     .imageContainer {
         margin: auto;
+        margin-top: 2%;
     }
 
     .imageContainer-right {
