@@ -1,6 +1,6 @@
-**THE RPG GAME**
+#THE RPG GAME
 
-[PLAY HERE!](https://walshcam.github.io/RPG-Game/)
+##[PLAY HERE!](https://walshcam.github.io/RPG-Game/)
 
 ***What is it?***
 
